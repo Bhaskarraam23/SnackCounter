@@ -1,6 +1,6 @@
 namespace SnackCounter.Core;
 
-public sealed class FakeChatClient : IChatClient
+public sealed class MockChatClient : IChatClient
 {
     private readonly object _gate = new();
     private readonly List<(string To, string Message)> _sent = new();
@@ -11,7 +11,7 @@ public sealed class FakeChatClient : IChatClient
     public void SendToCoordinators(string officeId, string message) { lock (_gate) _sent.Add(($"coordinators:{officeId}", message)); }
 }
 
-public sealed class FakeHrClient : IHrClient
+public sealed class MockHrClient : IHrClient
 {
     private readonly object _gate = new();
     private readonly Dictionary<string, (string ClaimId, HrClaim Claim)> _byKey = new();
